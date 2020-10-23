@@ -21,7 +21,12 @@ $(document).ready(function ()
             {
                 if (msg.success === true)
                 {
-                    location.reload();
+                    $($form).before('<div class="alert alert-success popup_success"' +
+                        ' role="alert">Задача успешно добавлена! Окно само закроется через 3 секунды.</div>');
+
+                    setTimeout(function (){
+                        $('#addTask').modal('hide');
+                    }, 3000);
                 } else
                 {
                     if (msg.errors)
@@ -41,6 +46,10 @@ $(document).ready(function ()
             }
         });
     });
+
+    $('#addTask').on('hide.bs.modal', function (e) {
+        location.reload();
+    })
 
     $('.edit-task-popup').on('click', function (e)
     {
@@ -120,7 +129,12 @@ $(document).ready(function ()
             {
                 if (msg.success === true)
                 {
-                    location.reload();
+                    $($form).before('<div class="alert alert-success popup_success"' +
+                        ' role="alert">Задача успешно обновлена! Окно само закроется через 3 секунды.</div>');
+
+                    setTimeout(function (){
+                        $('#editTask').modal('hide');
+                    }, 3000);
                 } else
                 {
                     if (msg.errors)
@@ -149,4 +163,8 @@ $(document).ready(function ()
             }
         });
     });
+
+    $('#editTask').on('hide.bs.modal', function (e) {
+        location.reload();
+    })
 });
